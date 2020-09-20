@@ -1,26 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 
 const Modal = () => {
-    return (
-        <div class="ui basic modal">
-            <div class="ui icon header">
-                <i class="archive icon"></i>
-                Your Form Has Been Submitted!
-            </div>
-            <div class="content">
-                <p>Thank you for giving us your details. We will get back to you shortly.</p>
-            </div>
-            <div class="actions">
-                <div class="ui red basic cancel inverted button">
-                    <i class="remove icon"></i>
-                    No
+
+    const [ modalState, setModalState ] = useState('visible active');
+
+    const onDismiss = () => {
+        setModalState('');
+    }
+
+    return createPortal( 
+        <div onClick={onDismiss} className={`ui modals dimmer ${modalState}`}>
+            <div className={`ui standard modal ${modalState}`}>
+                <div className='header'>
+                    Thank you!
                 </div>
-                <div class="ui green ok inverted button">
-                    <i class="checkmark icon"></i>
-                    Yes
+                <div className='content'>
+                    <p>You will hear from us shortly!</p>
                 </div>
             </div>
-        </div>
+        </div>,
+        document.getElementById('modal')
     )
 }
 
