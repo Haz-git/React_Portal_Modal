@@ -1,8 +1,11 @@
 import React from 'react';
+import Form from './Form';
 
 const App = () => {
     return (
-        <div>Hello World</div>
+        <div className='ui container'>
+            <Form />
+        </div>
     )
 }
 
